@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="EmployeeIntegrationService" targetNamespace="http://EmployeeIntegrationService" xmlns:bons1="http://www.example.org/Employee" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://EmployeeIntegrationService" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="EmployeeIntegrationServiceHttpBinding" originalBindingStyle="document"/>
+        <generatedXSD location="EmployeeIntegrationService_InlineSchema1.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  
+  
+  
+  <wsdl:types>
+    
+        <xsd:schema targetNamespace="http://EmployeeIntegrationService" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:import namespace="http://www.example.org/Employee" schemaLocation="Employee.xsd"/>
+            <xsd:include schemaLocation="EmployeeIntegrationService_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="getEmployeeDetailsRequestMsg">
+    <wsdl:part element="tns:getEmployeeDetails" name="getEmployeeDetailsParameters"/>
+  </wsdl:message>
+  <wsdl:message name="getEmployeeDetailsResponseMsg">
+    <wsdl:part element="tns:getEmployeeDetailsResponse" name="getEmployeeDetailsResult"/>
+  </wsdl:message>
+    <wsdl:portType name="EmployeeIntegrationService">
+    <wsdl:operation name="getEmployeeDetails">
+      <wsdl:input message="tns:getEmployeeDetailsRequestMsg" name="getEmployeeDetailsRequest"/>
+      <wsdl:output message="tns:getEmployeeDetailsResponseMsg" name="getEmployeeDetailsResponse"/>
+    </wsdl:operation>
+    </wsdl:portType>
+  <wsdl:binding name="EmployeeIntegrationServiceHttpBinding" type="tns:EmployeeIntegrationService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getEmployeeDetails">
+            <soap:operation soapAction="http://EmployeeIntegrationService/getEmployeeDetails"/>
+            <wsdl:input name="getEmployeeDetailsRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="getEmployeeDetailsResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+    </wsdl:operation>
+    </wsdl:binding>
+  <wsdl:service name="EmployeeIntegrationServiceHttpService">
+    <wsdl:port binding="tns:EmployeeIntegrationServiceHttpBinding" name="EmployeeIntegrationServiceHttpPort">
+      <soap:address location="http://localhost:7800/EmployeeIntegrationService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
